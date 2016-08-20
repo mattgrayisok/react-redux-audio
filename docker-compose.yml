@@ -1,0 +1,22 @@
+nginx:
+    build: ./containers/nginx/
+    ports:
+        - 80:80
+    volumes_from:
+        - app-data
+
+app-data:
+    image: php:7.0-fpm
+    volumes:
+        - ./src/public:/var/www/html
+    command: "true"
+
+buildchain:
+    build: ./containers/build/
+    ports:
+        - 3000:3000
+        - 3001:3001
+    links:
+        - nginx
+    volumes:
+        - ./src:/project/src

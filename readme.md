@@ -1,4 +1,4 @@
-# OpenGig
+# Audio Player
 
 `docker-compose up -d` <-- Create containers and start them
 

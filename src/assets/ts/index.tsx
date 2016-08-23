@@ -8,6 +8,10 @@ import {
  } from "./actions/playlist";
 import { Track } from "./reducers/tracks";
 import { play, stop } from "./actions/player";
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import * as React from 'react';
+import App from './components/App';
 
 function main() {
 
@@ -47,7 +51,14 @@ function main() {
   store.dispatch(plAddAtPosition(2, 0));
   store.dispatch(plRemoveAtPosition(1));
 
-  store.dispatch(play(4))
+  //store.dispatch(play(4))
+
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('root')
+  )
 
 }
 

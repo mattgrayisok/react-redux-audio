@@ -29,7 +29,7 @@ gulp.task('browserify', function () {
     return browserify({
         basedir: '.',
         debug: true,
-        entries: [ 'src/assets/ts/index.ts' ],
+        entries: [ 'src/assets/ts/index.tsx' ],
     }).
     plugin(tsify).
     transform(babelify, { presets: ["es2015"], extensions: [ '.ts' ] }).
@@ -47,7 +47,7 @@ gulp.task('build', ['sass', 'browserify']);
 gulp.task('watch', ['sass', 'browserify'], function() {
 
     gulp.watch('src/assets/sass/**/*.scss', ['sass']);
-    gulp.watch('src/assets/ts/**/*.ts', ['browserify']);
+    gulp.watch('src/assets/ts/**/*.ts*', ['browserify']);
 });
 
 gulp.task('default', ['build']);

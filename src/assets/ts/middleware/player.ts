@@ -7,9 +7,9 @@ export default store => next => action => {
 
         case PLAYER_PLAY:
             loadSound(action.payload.trackId, () => {
-                next(action);
+                //next(action);
             });
-            return {};
+            return next(action);;
 
         case PLAYER_STOP:
             //mute();

@@ -19,6 +19,7 @@ const defaultState: IPlayerState = {
 };
 
 export default (state = defaultState, action: { type: string; payload: any; }) => {
+console.log(action);
 
     switch(action.type) {
 

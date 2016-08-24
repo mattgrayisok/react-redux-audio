@@ -1,4 +1,4 @@
-import { PLAYER_PLAY, PLAYER_STOP } from "../actions/player";
+import { PLAYER_PLAY, PLAYER_STOP, PLAYER_PROGRESSED } from "../actions/player";
 
 const enum PlayerStates {
     Stopped,
@@ -18,8 +18,7 @@ const defaultState: IPlayerState = {
     playbackPosition: 0
 };
 
-export default (state = defaultState, action: { type: string; payload: any; }) => {
-console.log(action);
+export default (state = defaultState, action: { type: string; payload: any; }) : IPlayerState => {
 
     switch(action.type) {
 
@@ -35,7 +34,14 @@ console.log(action);
                 state: PlayerStates.Stopped,
                 trackId: state.trackId,
                 playbackPosition: state.playbackPosition
-            }
+            };
+
+        case PLAYER_PROGRESSED:
+            return {
+                state: PlayerStates.Playing,
+                trackId: state.trackId,
+                playbackPosition: action.payload.time
+            };
 
         default:
             return state;

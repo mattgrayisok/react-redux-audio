@@ -44,6 +44,11 @@
   ]
 }
 
+#Todo
+
+* Need a better way of running `npm install` and `typings install` in the build container
+* Need to stop browserify from getting killed on random typescript errors
+
 Actions:
 
 Play (track | undefined) -> Streams unless downloaded

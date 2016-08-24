@@ -1,5 +1,5 @@
-import { PLAYER_PLAY, PLAYER_STOP } from "../actions/player";
-import { loadSound } from "../effects/player";
+import { PLAYER_PLAY, PLAYER_STOP, PLAYER_PROGRESSED } from "../actions/player";
+import { loadSound, pauseSound } from "../effects/player";
 
 export default store => next => action => {
 
@@ -7,12 +7,16 @@ export default store => next => action => {
 
         case PLAYER_PLAY:
             loadSound(action.payload.trackId, () => {
-                //next(action);
+
             });
-            return next(action);;
+            return next(action);
 
         case PLAYER_STOP:
-            //mute();
+            pauseSound();
+            return next(action);
+
+        case PLAYER_PROGRESSED:
+            //Nothing
             return next(action);
 
         // default should just be fall through

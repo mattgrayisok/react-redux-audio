@@ -1,4 +1,5 @@
 import store from "../store";
+import { progressed } from '../actions/player';
 
 let currentAudio: HTMLAudioElement = null;
 
@@ -11,7 +12,30 @@ export const loadSound = (trackId: number, done: () => void): void  => {
     return;
   }
 
+  if(currentAudio !== null){
+    //Stop current audio
+    currentAudio.pause();
+  }
+
   currentAudio = new Audio(`/${trackId}.mp3`);
+
+  //Add a listener which listens for the first track progress event and puts us into a playing state
+  currentAudio.addEventListener('timeupdate', (time) => {
+    if(currentAudio.currentTime > 0){
+      store.dispatch(progressed(currentAudio.currentTime));
+    }
+  });
+
+
   currentAudio.play();
 
 };
+
+export const pauseSound = () => {
+
+  if(currentAudio !== null){
+    //Stop current audio
+    currentAudio.pause();
+  }
+
+}

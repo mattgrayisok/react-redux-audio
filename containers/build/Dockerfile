@@ -12,5 +12,6 @@ RUN /tmp/provision.sh
 COPY ./tslint.json tslint.json
 COPY ./tsconfig.json tsconfig.json
 COPY ./gulpfile.js gulpfile.js
+COPY ./webpack.config.js webpack.config.js
 
 CMD ./node_modules/.bin/gulp watch

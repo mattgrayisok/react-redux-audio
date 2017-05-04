@@ -2,17 +2,22 @@ import { connect } from 'react-redux';
 import Track from './Track';
 import store from "../store";
 import { play, stop } from "../actions/player";
+import { PlayerStates } from "../reducers/player";
 
 const mapStateToProps = (state) => {
   return {
-    currentlyPlayingTrack: state.player.trackId
+    currentlyPlayingTrack: state.player.trackId,
+    playerState: state.player.state,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onClick: (id) => {
-      store.dispatch(play(id))
+    onClickPlay: (id) => {
+      dispatch(play(id))
+    },
+    onClickStop: () => {
+      dispatch(stop())
     }
   }
 }

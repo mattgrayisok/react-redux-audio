@@ -1,5 +1,5 @@
 import store from "../store";
-import { progressed } from '../actions/player';
+import { progressed, trackEnded } from '../actions/player';
 
 let currentAudio: HTMLAudioElement = null;
 
@@ -26,6 +26,9 @@ export const loadSound = (trackId: number, done: () => void): void  => {
     }
   });
 
+  currentAudio.addEventListener('ended', () => {
+    store.dispatch(trackEnded());
+  });
 
   currentAudio.play();
 

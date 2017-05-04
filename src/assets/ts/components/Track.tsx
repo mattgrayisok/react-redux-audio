@@ -1,8 +1,11 @@
 import * as React from 'react';
+import { PlayerStates } from "../reducers/player";
 
-const Track = ({ onClick, track, currentlyPlayingTrack }) => (
+const Track = ({ onClickPlay, onClickStop, track, currentlyPlayingTrack, playerState }) => (
   <li
-    onClick={() => onClick(track.id)}
+    onClick={
+      () => currentlyPlayingTrack == track.id && playerState == PlayerStates.Playing
+      ? onClickStop() : onClickPlay(track.id)}
     style={{
       color : currentlyPlayingTrack==track.id ? 'red' : ''
     }}

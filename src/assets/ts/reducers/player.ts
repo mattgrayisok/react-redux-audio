@@ -1,6 +1,6 @@
-import { PLAYER_PLAY, PLAYER_STOP, PLAYER_PROGRESSED } from "../actions/player";
+import { PLAYER_PLAY, PLAYER_STOP, PLAYER_PROGRESSED, PLAYER_TRACK_ENDED } from "../actions/player";
 
-const enum PlayerStates {
+export const enum PlayerStates {
     Stopped,
     Playing,
     Loading
@@ -38,9 +38,16 @@ export default (state = defaultState, action: { type: string; payload: any; }) :
 
         case PLAYER_PROGRESSED:
             return {
-                state: PlayerStates.Playing,
+                state: state.state == PlayerStates.Loading ? PlayerStates.Playing : state.state,
                 trackId: state.trackId,
                 playbackPosition: action.payload.time
+            };
+
+        case PLAYER_TRACK_ENDED:
+            return {
+                state: PlayerStates.Stopped,
+                trackId: state.trackId,
+                playbackPosition: 0
             };
 
         default:

@@ -1,4 +1,4 @@
-import { PLAYER_PLAY, PLAYER_STOP, PLAYER_PROGRESSED } from "../actions/player";
+import { PLAYER_PLAY, PLAYER_STOP, PLAYER_PROGRESSED, PLAYER_TRACK_ENDED } from "../actions/player";
 import { loadSound, pauseSound } from "../effects/player";
 
 export default store => next => action => {
@@ -16,6 +16,10 @@ export default store => next => action => {
             return next(action);
 
         case PLAYER_PROGRESSED:
+            //Nothing
+            return next(action);
+
+        case PLAYER_TRACK_ENDED:
             //Nothing
             return next(action);
 
